@@ -6,17 +6,9 @@ Khong chua 0 dung dau
 Rang buoc: 
 So luong chu so trong node [1, 100]
 0 <= Node.val <= 9
-
-Giai phap:
-06/11/2025
-[2, 4, 3] [5, 6, 4]
-B1: [3, 4, 2] [4, 6, 5]
-B2: [8, 0, 7]
-B3: [7, 0, 8]
-
-[8, 0, 7]
 */
 #include "../../include/list_node.h"
+
 
 class Solution {
 public:
@@ -44,7 +36,7 @@ public:
         }
         
         ListNode* result = dummy->next;
-         //delete dummy;  // Critical: free dummy but slow down the runtime
+        delete dummy;  // Critical: free dummy but can slow down the runtime
         return result;
     }
 };
