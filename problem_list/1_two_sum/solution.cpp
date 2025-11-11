@@ -17,20 +17,23 @@ Sau do chay vong lap 1 lan de check
 Do kho O(n)
 */
 
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
+
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
+    static vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> map;
-        for(int i = 0; i < nums.size(); i++){
+        for (int i = 0; i < nums.size(); i++) {
             int check = target - nums[i];
-            if(map.find(check) != map.end()){
-                if(map[check] != i){
-                    return {i, map[check]};
-                }
+            if (map.find(check) != map.end()) {
+                return {map[check], i};
             }
             map[nums[i]] = i;
         }
-        
         return {};
     }
 };
