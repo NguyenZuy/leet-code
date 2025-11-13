@@ -1,37 +1,51 @@
-/* 
-De Bai: 
+/*
+De Bai:
 Cho 1 chuoi string `s`, tim do dai cua chuoi con dai nhat k co ki tu trung lap
 
-Rang buoc: 
+Rang buoc:
 `0 <= s.length <= 5 * 10^4`
 `s` bao gom ki tu tieng anh, chu so, ki hieu va khoang trang
 
-"pwwkew" 0-p, 1-w, 3-k, 4-e, 5-w
-"abcabcbb" 0-a, 1-b, 2-c, 3-a, 4-b, 5-c, 6-b
-"abcbbcbb"
-"bbbbbb" 0-b
+Sliding window
 */
 
 #include <iostream>
 #include <unordered_set>
+#include <vector>
+#include <cmath>
+#include <unordered_map>
+#include <cstdlib>
+#include <algorithm> // for std::sort
 
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    static int lengthOfLongestSubstring(string s) {
-        unordered_set<char> chars;
-        int count;
+    static int lengthOfLongestSubstring(string s)
+    {
+        unordered_map<char, int> charIndexMap;
+        int maxLength = 0;
+        int start = 0; // Đầu cửa sổ
 
-        for(char c : s){
+        for (int end = 0; end < s.length(); end++)
+        {
+            char currentChar = s[end];
 
-            if(chars.find(c) == chars.end()){
-                // Exist in set
-                chars.insert(c);
-                count++;
+            // Nếu ký tự đã xuất hiện trong cửa sổ hiện tại
+            if (charIndexMap.find(currentChar) != charIndexMap.end() && charIndexMap[currentChar] >= start)
+            {
+                // Di chuyển start đến sau vị trí ký tự trùng
+                start = charIndexMap[currentChar] + 1;
             }
+
+            // Cập nhật vị trí mới nhất của ký tự
+            charIndexMap[currentChar] = end;
+
+            // Cập nhật độ dài max
+            maxLength = max(maxLength, end - start + 1);
         }
 
-        return count;
+        return maxLength;
     }
 };

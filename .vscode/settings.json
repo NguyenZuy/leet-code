@@ -13,6 +13,11 @@
         "initializer_list": "cpp",
         "span": "cpp",
         "text_encoding": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "random": "cpp",
+        "variant": "cpp",
+        "cstdlib": "cpp",
+        "cmath": "cpp"
     }
 }
